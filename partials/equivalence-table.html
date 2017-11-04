@@ -1,0 +1,33 @@
+<div>
+  <h1>Equivalence Table: {{currentPage.domain}} {{currentPage.level}} {{currentPage.year}}</h1>
+  <p>These tables can be found at <a href="https://www.nap.edu.au/results-and-reports/how-to-interpret/score-equivalence-tables">https://www.nap.edu.au/results-and-reports/how-to-interpret/score-equivalence-tables</a>
+     Data from each year is released in December. As a result the 2017 data is not official data, but has been gleaned from available student results, or estimated, using 2016 data trends, as indicated with an *.
+  </p>
+  <table class="table table-bordered">
+    <thead>
+      <td>Raw Score</td>
+      <td>Scaled Score</td>
+      <td>Band</td>
+      <td>Error</td>
+    </thead>
+    <tbody>
+      <tr ng-repeat="scores in dataTable">
+        <td>
+          {{scores.rawScore}}
+        </td>
+        <td>
+          {{scores.scaledScore}}
+          <span ng-if="scores.scaledScoreOfficial=='no'">*</span>
+        </td>
+        <td>
+          {{scores.band}}
+          <span ng-if="scores.scaledScoreOfficial=='no'">*</span>
+        </td>
+        <td>
+          {{scores.error}}
+          <span ng-if="scores.scaledErrorOfficial=='no'">*</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

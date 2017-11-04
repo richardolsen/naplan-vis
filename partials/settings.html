@@ -1,0 +1,19 @@
+<h1>Settings</h1>
+<form>
+  <p>
+    By using local storage, your NAPLAN student data is stored in this browser, on this computer.<br />
+    This means you will not need to load your CSV student data files each time you refresh the browser.<br />
+    None of your data ever leaves this computer, whatever choice you make. All calculations are performed locally by your computer.<br />
+    If this is your private computer then it is recommended to use local storage. If this is a public computer do not use local storage.<br />
+    When you uncheck the box below your data will be deleted from the local storage. When local storage is not being used, all student data is deleted when the browser window is closed.
+  </p>
+  <p>
+    <strong>Use Local Storage</strong> <input type="checkbox" ng-model="setting.useLS" />
+  </p>
+  <p>
+    (Note: Local storage will be used to remember this preference.)
+  </p>
+  <p>
+    <button ng-click="updateSettings()" class="btn btn-success">Save Settings</button>
+  </p>
+</form>

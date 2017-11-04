@@ -1,0 +1,15 @@
+#Enable XSendFile
+Header set Access-Control-Allow-Origin "*"
+
+Options +FollowSymLinks -MultiViews
+RewriteEngine on
+RewriteBase /
+
+
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+
+RewriteRule ^(.*) /index.html [NC,L]

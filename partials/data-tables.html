@@ -1,0 +1,30 @@
+<h1>NAPLAN Data Tables</h1>
+
+<div>
+  NAPLAN uses equivalence tables for converting
+  https://www.nap.edu.au/results-and-reports/how-to-interpret/score-equivalence-tables
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <td>&nbsp;</td>
+        <td ng-repeat="y in [2017,2016,2015,2014,2013,2012,2011]">
+          {{y}}
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="d in ['Numeracy','Reading','Spelling','Writing','Grammar and Punctuation']">
+        <td>
+          {{d}}
+        </td>
+        <td ng-repeat="y in [2017,2016,2015,2014,2013,2012,2011]">
+          <span ng-repeat="l in [3,5]">
+            <a href ng-href="/equivalence-table/d/{{d}}/y/{{y}}/l/{{l}}">{{l}}</a>
+          </span>
+        </td>
+      </td>
+    </tbody>
+  </table>
+
+
+</div>

@@ -1,0 +1,197 @@
+<div>
+
+  <h1>Matched Cohort {{currentPage.domain}} Year {{currentPage.level}} {{currentPage.year}}</h1>
+  <h3>Overview</h3>
+  <p>These tables are not completely accurate as NAPLAN does not make available the actual figures for calculating relative growth.</p>
+  <div>
+    <table class="table table-bordered">
+      <thead>
+        <td>
+          Students
+        </td>
+        <td>
+          High Growth
+        </td>
+        <td>
+          Average Growth
+        </td>
+        <td>
+          Low Growth
+        </td>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            {{cohortData.totals.students}}
+          </td>
+          <td>
+            {{cohortData.totals.highGain}}
+          </td>
+          <td>
+            {{cohortData.totals.averageGain}}
+          </td>
+          <td>
+            {{cohortData.totals.lowGain}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Confidence</h3>
+  <div>
+    <div>
+      Probabilities bases on random sampling the data {{tests.relativeGrowth.samplingSize}} times
+    </div>
+
+    <table  class="table table-bordered">
+      <thead>
+        <tr>
+          <td>Number of Students</td>
+          <td>High Growth</td>
+          <td>Average Growth</td>
+          <td>Low Growth</td>
+        </tr>
+      </thead>
+    <tbody>
+      <tr ng-repeat="sample in occurences">
+        <td>
+          {{sample.count}}
+        </td>
+        <td ng-class="{'high': (cohortData.totals.highGain == sample.count)}">
+          {{(sample.highGain / tests.relativeGrowth.samplingSize * 100 | number:2)}}%
+        </td>
+        <td>
+          {{(sample.averageGain  / tests.relativeGrowth.samplingSize * 100 | number:0)}}%
+        </td>
+        <td ng-class="{'low': (cohortData.totals.lowGain == sample.count)}">
+          {{(sample.lowGain  / tests.relativeGrowth.samplingSize * 100 | number:2)}}%
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div>
+    Probabilities bases on random sampling the data {{tests.relativeGrowth.samplingSize}} times
+    Unique Outcomes: {{tests.relativeGrowth.data.length}} (Showing top 5 sorted by confidence)
+  </div>
+
+    <table class="table table-bordered">
+      <thead>
+        <td>
+          High Growth
+          <div>
+            <i ng-click="sortrelativeGrowthData('highGain','ASC')" class="fa fa-arrow-up" aria-hidden="true"></i>
+            <i ng-click="sortrelativeGrowthData('highGain','DESC')" class="fa fa-arrow-down" aria-hidden="true"></i>
+          </div>
+        </td>
+        <td>
+          Average Growth
+          <div>
+            <i ng-click="sortrelativeGrowthData('averageGain','ASC')" class="fa fa-arrow-up" aria-hidden="true"></i>
+            <i ng-click="sortrelativeGrowthData('averageGain','DESC')" class="fa fa-arrow-down" aria-hidden="true"></i>
+          </div>
+        </td>
+        <td>
+          Low Growth
+          <div>
+            <i ng-click="sortrelativeGrowthData('lowGain','ASC')" class="fa fa-arrow-up" aria-hidden="true"></i>
+            <i ng-click="sortrelativeGrowthData('lowGain','DESC')" class="fa fa-arrow-down" aria-hidden="true"></i>
+          </div>
+        </td>
+        <td>
+          Probability (Occurences)
+          <div>
+            <i ng-click="sortrelativeGrowthData('occurence','ASC')" class="fa fa-arrow-up" aria-hidden="true"></i>
+            <i ng-click="sortrelativeGrowthData('occurence','DESC')" class="fa fa-arrow-down" aria-hidden="true"></i>
+          </div>
+        </td>
+      </thead>
+      <tbody>
+        <!-- FIXME: Add a slider to control how many rows are shown -->
+        <tr ng-repeat="sample in tests.relativeGrowth.data | limitTo:5">
+          <td>
+            {{sample.highGain}}
+          </td>
+          <td>
+            {{sample.averageGain}}
+          </td>
+          <td>
+            {{sample.lowGain}}
+          </td>
+          <td>
+            {{sample.confidence}}% ({{sample.occurence}})
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Students</h3>
+  <table class="table table-bordered">
+    <thead>
+      <td>
+        Student
+        <div>
+          <i ng-click="sortCohortData('surname','ASC')" class="fa fa-arrow-up" aria-hidden="true"></i>
+          <i ng-click="sortCohortData('surname','DESC')" class="fa fa-arrow-down" aria-hidden="true"></i>
+        </div>
+      </td>
+      <td>
+        Class
+        <div>
+          <i ng-click="sortCohortData('class','ASC')" class="fa fa-arrow-up" aria-hidden="true"></i>
+          <i ng-click="sortCohortData('class','DESC')" class="fa fa-arrow-down" aria-hidden="true"></i>
+        </div>
+      </td>
+      <td>
+        Score (Year {{currentPage.level -2}})
+        <div>
+          <i ng-click="sortCohortData('previousScore','ASC')" class="fa fa-arrow-up" aria-hidden="true"></i>
+          <i ng-click="sortCohortData('previousScore','DESC')" class="fa fa-arrow-down" aria-hidden="true"></i>
+        </div>
+      </td>
+      <td>Year {{currentPage.level -2}} Band</td>
+      <td>
+        Year {{currentPage.level}} Score
+        <div>
+          <i ng-click="sortCohortData('currentScore','ASC')" class="fa fa-arrow-up" aria-hidden="true"></i>
+          <i ng-click="sortCohortData('currentScore','DESC')" class="fa fa-arrow-down" aria-hidden="true"></i>
+        </div>
+      </td>
+      <td>Year {{currentPage.level}} Band</td>
+      <td>
+        Difference
+        <div>
+          <i ng-click="sortCohortData('difference','ASC')" class="fa fa-arrow-up" aria-hidden="true"></i>
+          <i ng-click="sortCohortData('difference','DESC')" class="fa fa-arrow-down" aria-hidden="true"></i>
+        </div>
+      </td>
+      <td>
+        Relative Growth
+        <div>
+          <i ng-click="sortCohortData('gain','ASC')" class="fa fa-arrow-up" aria-hidden="true"></i>
+          <i ng-click="sortCohortData('gain','DESC')" class="fa fa-arrow-down" aria-hidden="true"></i>
+        </div>
+      </td>
+      <td>Confidence (Low Growth)</td>
+      <td>Confidence (Average Growth)</td>
+      <td>Confidence (High Growth)</td>
+    </thead>
+    <tbody>
+      <tr ng-repeat="student in cohortData.students" ng-class="student.gain">
+        <td>{{student.surname}}, {{student.firstName}}</td>
+        <td>{{student.class}}</td>
+        <td>{{student.previousScore}}</td>
+        <td>{{student.previousBand}}</td>
+        <td>{{student.currentScore}}</td>
+        <td>{{student.currentBand}}</td>
+        <td>{{student.difference}}</td>
+        <td>{{student.gain}}</td>
+        <td>{{student.lowGain}}%</td>
+        <td>{{student.averageGain}}%</td>
+        <td>{{student.highGain}}%</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

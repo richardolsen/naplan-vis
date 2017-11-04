@@ -1,0 +1,69 @@
+<div>
+  <p>NAPLAN Reports</p>
+  <div ng-repeat="level in data.totals.levels">
+    <div ng-repeat="year in level.years">
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <td>Year</td>
+            <td>Domain</td>
+            <td>Reports</td>
+            <td>Year Level</td>
+            <td>Students</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="domain in year.domains">
+            <td>{{year.year}}</td>
+            <td>
+              {{domain.domain}}
+            </td>
+            <td>
+              <p ng-if="hasOutcomesData(year.year,level.level)">
+                <a href ng-href="/report/d/{{domain.domain}}/y/{{year.year}}/l/{{level.level}}">Overview</a>
+              </p>
+              <p ng-if="hasQuestionData(year.year,level.level)">
+                <a href ng-href="/student-response/d/{{domain.domain}}/y/{{year.year}}/l/{{level.level}}">Student Response</a>
+              </p>
+              <p ng-show="hasRelativeGrowthReport(year.year,level.level)">
+                <a  href ng-href="/matched-cohort/d/{{domain.domain}}/y/{{year.year}}/l/{{level.level}}">Relative Growth</a>
+              </p>
+              <p ng-show="hasRelativeGrowthReport(year.year,level.level)">
+                <a  href ng-href="/matched-cohort-map/d/{{domain.domain}}/y/{{year.year}}/l/{{level.level}}">Relative Growth Heat Map</a>
+              </p>
+              <p ng-if="hasFiveYearTrendReport(year.year,level.level)">
+                <a  href ng-href="/five-year-trend/d/{{domain.domain}}/y/{{year.year}}/l/{{level.level}}">Five Year Trend</a>
+              </p>
+            </td>
+            <td>{{level.level}}</td>
+            <td>{{domain.students}}</td>
+            <td>{{domain.band1}}</td>
+            <td>{{domain.band2}}</td>
+            <td>{{domain.band3}}</td>
+            <td>{{domain.band4}}</td>
+            <td>{{domain.band5}}</td>
+            <td>{{domain.band6}}</td>
+            <td>{{domain.band7}}</td>
+            <td>{{domain.band8}}</td>
+            <td>{{domain.band9}}</td>
+            <td>{{domain.band10}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <hr />
+    </div>
+  <div>
+</div>
+</div>
+</div>

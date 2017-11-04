@@ -1,0 +1,67 @@
+<div>
+
+  <h1>Matched Cohort {{currentPage.domain}} Year {{currentPage.level}} {{currentPage.year}}</h1>
+  <h3>Overview</h3>
+  <p>These tables are not completely accurate as NAPLAN does not make available the actual figures for calculating relative growth.</p>
+  <div>
+    <table class="table table-bordered table-map">
+      <thead>
+        <tr>
+          <td colspan="2" rowspan="2"></td>
+          <td colspan="100%">Year {{currentPage.level}}</td>
+        </tr>
+        <tr>
+          <td colspan="{{col}}" ng-repeat="col in bandCols track by $index">
+            {{($index +1)}}
+            <!-- {{currentTest[0].currentRawScore}} ({{currentTest[0].currentScaledScore}})-->
+          </td>
+
+      </tr>
+
+      </thead>
+      <tbody>
+        <tr ng-repeat="currentTest in matchedTests">
+          <td ng-if="$first" rowspan="100%" class="previous-title">
+            Y<br />e<br />a<br />r<br /><br />3
+            <!-- {{currentTest[0].currentRawScore}} ({{currentTest[0].currentScaledScore}})-->
+          </td>
+          <td ng-if="bandRowCell($index)>0" rowspan="{{bandRowCell($index)}}">
+            {{bandRowCellBand($index)}}
+          </td>
+          <td class="map-cell" ng-repeat="score in currentTest" ng-class="{'high':(score.previousScaledScore<=score.high),'low':(score.previousScaledScore>=score.low),'average':((score.previousScaledScore>score.high)&&(score.previousScaledScore<score.low))}">
+            <!-- {{score.previousScaledScore}},{{score.currentScaledScore}},{{score.high}} -->
+
+            <a href tabindex="0" ng-if="score.students.length>0" value="{{score.students.length}}" uib-popover-html="score.popover"  popover-trigger="'focus'">{{score.students.length}}</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <p>
+      Explore how other errors, which NAPLAN does not address, would influence student results.<br />
+      <strong>Sorry, this has not been implemented yet!</strong>
+    </p>
+    <p>Student Error:
+      <input id="slider3" ng-model="realativeGrowth.studentError" type ="range" min ="0" max="5" step ="1" ng-change="updateRelativeGrowth()" />
+
+        <span ng-show="realativeGrowth.studentError == 0">(The student tested in line with their ability.)</span>
+        <span ng-show="realativeGrowth.studentError == 1">(95% confident that the student performed to their ability plus or minus a single question.)</span>
+        <span ng-show="realativeGrowth.studentError == 2">(95% confident that the student performed to their ability plus or minus 2 questions.)</span>
+        <span ng-show="realativeGrowth.studentError == 3">(95% confident that the student performed to their ability plus or minus 3 questions.)</span>
+        <span ng-show="realativeGrowth.studentError == 4">(95% confident that the student performed to their ability plus or minus 4 questions.)</span>
+        <span ng-show="realativeGrowth.studentError == 5">(95% confident that the student performed to their ability plus or minus 5 questions.)</span>
+    <p>
+    <p>
+      Test Error:
+      <input id="slider3" ng-model="realativeGrowth.testError" type ="range" min ="0" max="50" step ="10" ng-change="updateRelativeGrowth()" />
+
+        <span ng-show="realativeGrowth.testError == 0">(NAPLAN Standard: The test is 95% reliable to +/-7 months.)</span>
+        <span ng-show="realativeGrowth.testError == 10">(Test Error: The test is 95% reliable to +/- 8 months.)</span>
+        <span ng-show="realativeGrowth.testError == 20">(Test Error: The test is 95% reliable to +/- 9 months.)</span>
+        <span ng-show="realativeGrowth.testError == 30">(Test Error: The test is 95% reliable to +/- 10 months.)</span>
+        <span ng-show="realativeGrowth.testError == 40">(Test Error: The test is 95% reliable to +/- 11 months.)</span>
+        <span ng-show="realativeGrowth.testError == 50">(Test Error: The test is 95% reliable to +/- 12 months.)</span>
+    </p>
+  </div>
+</div>

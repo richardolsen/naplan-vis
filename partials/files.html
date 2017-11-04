@@ -1,0 +1,22 @@
+<h1>NAPLAN Data Sets</h1>
+<div id="inputs" class="clearfix">
+  <input type="file" custom-on-change="nowFileUpload">
+</div>
+<div>
+  <table class="table table-bordered">
+    <tr>
+      <td>File Name</td>
+      <td>Data</td>
+      <td>Grade Level</td>
+      <td>Year</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr ng-repeat="meta in data.meta">
+      <td>{{meta.name}}</td>
+      <td>{{meta.type}}</td>
+      <td>{{meta.level}}</td>
+      <td>{{meta.year}}</td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+</div>

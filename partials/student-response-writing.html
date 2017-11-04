@@ -1,0 +1,25 @@
+<div>
+  <h1>Student Response: {{currentPage.domain}} Year {{currentPage.level}} {{currentPage.year}}</h1>
+  <div  ng-repeat="question in questions">
+    <h3><a href ng-href="/student-response/d/Writing/y/{{currentPage.year}}/l/{{currentPage.level}}/q/{{question.question}}">{{question.skill}}</a></h3>
+    <table class="table table-bordered">
+      <thead>
+        <th ng-repeat="score in question.scores" style="width:14%;">
+          {{score.score}}
+        </th>
+      </thead>
+      <tbody>
+        <tr>
+          <td ng-repeat="score in question.scores" >
+            {{score.descriptor}}
+          </td>
+        </tr>
+        <tr>
+          <td ng-repeat="score in question.scores">
+            {{(score.school | number:0)}}%
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

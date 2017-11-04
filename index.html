@@ -1,0 +1,61 @@
+<!doctype html>
+<html ng-app="naplanApp">
+<base href="/">
+<!--
+  TODO:
+  1. Parse year 3 and year 5 data
+  2. Find the cohort, create the low, medium, high table.
+  3. Find the probability for each student for each bracket. (allow this to browse)
+  4. Find the probability for various combinations, run 100,000 times and graph.
+-->
+  <head>
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/angular-route.js"></script>
+    <script src="/js/angular-resource.js"></script>
+    <script src="/js/angular-sanitize.js"></script>
+    <script src="/js/angular-animate.min.js"></script>
+    <script src="/js/angular-touch.min.js"></script>
+    <script src="/js/ui-bootstrap-2.5.0.min.js"></script>
+    <script src="/js/ui-bootstrap-tpls-2.5.0.min.js"></script>
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.csv.js"></script>
+    <script src="/js/plotly-latest.min.js"></script>
+    <script src="/js/angular-plotly.js"></script>
+    <script src="/naplan.js"></script>
+    <script src="/services/tables.js"></script>
+    <script src="/services/localstorage.js"></script>
+    <script src="/services/naplan.js"></script>
+    <script src="/services/cache.js"></script>
+    <script src="/services/dataservice.js"></script>
+    <script src="/controllers/files.js"></script>
+    <script src="/controllers/naplan.js"></script>
+    <script src="/controllers/settings.js"></script>
+    <script src="/controllers/menu.js"></script>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <div ng-controller="MenuController">
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="submit" ng-click="go('/reports')" class="btn btn-primary" ng-show="hasData()">Reports</button>
+              <button type="submit" ng-click="go('/')" class="btn btn-primary">Data Sets</button>
+              <button type="submit" ng-click="go('/settings')" class="btn btn-primary">Settings</button>
+              <button type="submit" ng-click="go('/data-tables')" class="btn btn-primary">Reference Tables</button>
+              <button type="submit" ng-click="go('/getting-started')" class="btn btn-primary">About</button>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div ng-view>
+    </div>
+  </div>
+</body>
+
+
+</html>

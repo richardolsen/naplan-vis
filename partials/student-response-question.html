@@ -1,0 +1,67 @@
+<div>
+  <a href ng-href="{{nextSchoolQuestion()}}">Next Question</a>
+</div>
+<div>
+  <h1>{{currentPage.domain}} Year {{currentPage.level}} {{currentPage.year}} Question {{currentPage.question}}</h1>
+  <h4>{{currentPage.skill}}</h4>
+  <p ng-if="currentPage.domain == 'Spelling'">Word: {{currentPage.word}}</p>
+  <p>School: {{currentPage.schoolResult | number: 0}}%  State: {{currentPage.stateResult | number: 0}}%  </p>
+  <div>
+    <table class="table table-bordered">
+      <tr>
+        <td>Student
+          <div>
+            <i ng-click="sortSchoolData('surname','ASC')" class="fa fa-arrow-up" aria-hidden="true"></i>
+            <i ng-click="sortSchoolData('surname','DESC')" class="fa fa-arrow-down" aria-hidden="true"></i>
+          </div>
+        </td>
+        <td>Class
+          <div>
+            <i ng-click="sortSchoolData('class','ASC')" class="fa fa-arrow-up" aria-hidden="true"></i>
+            <i ng-click="sortSchoolData('class','DESC')" class="fa fa-arrow-down" aria-hidden="true"></i>
+          </div>
+        </td>
+        <td>Question {{currentPage.question}}
+          <div>
+            <i ng-click="sortSchoolData('score','ASC')" class="fa fa-arrow-up" aria-hidden="true"></i>
+            <i ng-click="sortSchoolData('score','DESC')" class="fa fa-arrow-down" aria-hidden="true"></i>
+          </div>
+        </td>
+
+        <td>Test Raw Score
+          <div>
+            <i ng-click="sortSchoolData('testRawScore','ASC')" class="fa fa-arrow-up" aria-hidden="true"></i>
+            <i ng-click="sortSchoolData('testRawScore','DESC')" class="fa fa-arrow-down" aria-hidden="true"></i>
+          </div>
+        </td>
+
+        <td>Band
+          <div>
+            <i ng-click="sortSchoolData('band','ASC')" class="fa fa-arrow-up" aria-hidden="true"></i>
+            <i ng-click="sortSchoolData('band','DESC')" class="fa fa-arrow-down" aria-hidden="true"></i>
+          </div>
+        </td>
+
+        <td>Test Scaled Score
+          <div>
+            <i ng-click="sortSchoolData('testScaledScore','ASC')" class="fa fa-arrow-up" aria-hidden="true"></i>
+            <i ng-click="sortSchoolData('testScaledScore','DESC')" class="fa fa-arrow-down" aria-hidden="true"></i>
+          </div>
+        </td>
+
+        <td>Test Scaled Error
+          <div>
+            <i ng-click="sortSchoolData('score','ASC')" class="fa fa-arrow-up" aria-hidden="true"></i>
+            <i ng-click="sortSchoolData('score','DESC')" class="fa fa-arrow-down" aria-hidden="true"></i>
+          </div>
+        </td>
+
+      </tr>
+      <tr ng-repeat="student in school">
+        <td><a href ng-href="/student/{{student.casesId}}/d/{{currentPage.domain}}/y/{{currentPage.year}}/l/{{currentPage.level}}">{{student.surname}}, {{student.firstName}}</a></td>
+        <td>{{student.class}}</td>
+        <td ng-class="{'low': (student.score != 1), 'high': (student.score == 1)  }">{{student.response}}</td>
+        <td>{{student.testRawScore}}/{{student.testTotalQuestions}}</td>
+        <td>{{student.band}}</td>
+        <td>{{student.scaledScore}}</td>
+        <td>{{student.scaledError}}</td>

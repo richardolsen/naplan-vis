@@ -1,0 +1,75 @@
+<div>
+  <h1>Student Response: {{currentPage.domain}} Year {{currentPage.level}} {{currentPage.year}}</h1>
+  <div>
+    <table class="table table-bordered">
+      <thead>
+        <td>
+          Question
+          <div>
+            <i ng-click="sortQuestionData('question','ASC')" class="fa fa-arrow-up" aria-hidden="true"></i>
+            <i ng-click="sortQuestionData('question','DESC')" class="fa fa-arrow-down" aria-hidden="true"></i>
+          </div>
+        </td>
+        <td ng-if="currentPage.domain == 'Spelling'">
+          Word
+        </td>
+        <td ng-if="currentPage.domain == 'Numeracy'">
+          Dimension
+          <div>
+            <i ng-click="sortQuestionData('dimension','ASC')" class="fa fa-arrow-up" aria-hidden="true"></i>
+            <i ng-click="sortQuestionData('dimension','DESC')" class="fa fa-arrow-down" aria-hidden="true"></i>
+          </div>
+        </td>
+        <td>
+          Skill Assessed
+        </td>
+        <td>
+          School
+          <div>
+            <i ng-click="sortQuestionData('school','ASC')" class="fa fa-arrow-up" aria-hidden="true"></i>
+            <i ng-click="sortQuestionData('school','DESC')" class="fa fa-arrow-down" aria-hidden="true"></i>
+          </div>
+        </td>
+        <td>
+          State
+          <div>
+            <i ng-click="sortQuestionData('state','ASC')" class="fa fa-arrow-up" aria-hidden="true"></i>
+            <i ng-click="sortQuestionData('state','DESC')" class="fa fa-arrow-down" aria-hidden="true"></i>
+          </div>
+        </td>
+        <td>
+          Difference
+          <div>
+            <i ng-click="sortQuestionData('difference','ASC')" class="fa fa-arrow-up" aria-hidden="true"></i>
+            <i ng-click="sortQuestionData('difference','DESC')" class="fa fa-arrow-down" aria-hidden="true"></i>
+          </div>
+        </td>
+      </thead>
+      <tbody>
+        <tr ng-repeat="question in questions">
+          <td ng-class="{'difficulty1':question.difficulty==1,'difficulty2':question.difficulty==2,'difficulty3':question.difficulty==3,'difficulty4':question.difficulty==4 }">
+            {{question.question}}
+          </td>
+          <td ng-if="currentPage.domain == 'Numeracy'">
+            {{question.dimension}}
+          </td>
+          <td ng-if="currentPage.domain == 'Spelling'">
+            {{question.word}}
+          </td>
+          <td>
+            {{question.skill}}
+          </td>
+          <td ng-class="{'low': (question.school < 25), 'average': (question.school >= 25 && question.school <= 85), 'high': (question.school > 85)  }">
+            <a href ng-href="/student-response/d/{{currentPage.domain}}/y/{{currentPage.year}}/l/{{currentPage.level}}/q/{{question.question}}">{{(question.school | number: 0)}}%</a>
+          </td>
+          <td>
+            {{question.state}}%
+          </td>
+          <td>
+            {{(question.difference | number:0)}}%
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

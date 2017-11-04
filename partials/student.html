@@ -1,0 +1,69 @@
+<h1>{{studentData.surname}}, {{studentData.firstName}} - {{currentPage.domain}}</h1>
+<div ng-repeat="(domain, year)  in studentData.results">
+  {{proper(domain)}}
+  <table class="table table-bordered ">
+    <tr>
+      <td>Year</td>
+      <td>Level</td>
+      <td>Reported Band</td>
+      <td>Scaled Score</td>
+      <td>Test Error</td>
+      <td>Student Error</td>
+      <td>Band 1</td>
+      <td>Band 2</td>
+      <td>Band 3</td>
+      <td>Band 4</td>
+      <td>Band 5</td>
+      <td>Band 6</td>
+      <td>Band 7</td>
+      <td>Band 8</td>
+      <td>Band 9</td>
+      <td>Band 10</td>
+      </tr>
+      <tr ng-repeat="data in year">
+      <td>{{data.year}}</td>
+      <td>{{data.level}}</td>
+      <td>{{data.band}}</td>
+      <td>{{data.score}}</td>
+      <td>{{data.scaledError + student.testError}}</td>
+      <td>{{student.studentError}}</td>
+      <td ng-class="{'match':data.band==1,'possible':data.band!=1 && data.bands.band1 > 20}"><span ng-if="data.bands.band1 > 0">{{data.bands.band1}}%</span></td>
+      <td ng-class="{'match':data.band==2,'possible':data.band!=2 && data.bands.band2 > 20}"><span ng-if="data.bands.band2 > 0">{{data.bands.band2}}%</span></td>
+      <td ng-class="{'match':data.band==3,'possible':data.band!=3 && data.bands.band3 > 20}"><span ng-if="data.bands.band3 > 0">{{data.bands.band3}}%</span></td>
+      <td ng-class="{'match':data.band==4,'possible':data.band!=4 && data.bands.band4 > 20}"><span ng-if="data.bands.band4 > 0">{{data.bands.band4}}%</span></td>
+      <td ng-class="{'match':data.band==5,'possible':data.band!=5 && data.bands.band5 > 20}"><span ng-if="data.bands.band5 > 0">{{data.bands.band5}}%</span></td>
+      <td ng-class="{'match':data.band==6,'possible':data.band!=6 && data.bands.band6 > 20}"><span ng-if="data.bands.band6 > 0">{{data.bands.band6}}%</span></td>
+      <td ng-class="{'match':data.band==7,'possible':data.band!=7 && data.bands.band7 > 20}"><span ng-if="data.bands.band7 > 0">{{data.bands.band7}}%</span></td>
+      <td ng-class="{'match':data.band==8,'possible':data.band!=8 && data.bands.band8 > 20}"><span ng-if="data.bands.band8 > 0">{{data.bands.band8}}%</span></td>
+      <td ng-class="{'match':data.band==9,'possible':data.band!=9 && data.bands.band9 > 20}"><span ng-if="data.bands.band9 > 0">{{data.bands.band9}}%</span></td>
+      <td ng-class="{'match':data.band==10,'possible':data.band!=10 && data.bands.band10 > 20}"><span ng-if="data.bands.band10 > 0">{{data.bands.band10}}%</span>
+      </td>
+  </tr>
+</table>
+</div>
+<div>
+  <p>
+    Explore how other errors, which NAPLAN does not address, would influence student results.
+  </p>
+  <p>Student Error:
+    <input id="slider3" ng-model="student.studentError" type ="range" min ="0" max="4" step ="1" ng-change="updateStudent()" />
+
+      <span ng-show="student.studentError == 0">(The student tested in line with their ability.)</span>
+      <span ng-show="student.studentError == 1">(95% confident that the student performed to their ability plus or minus a single question.)</span>
+      <span ng-show="student.studentError == 2">(95% confident that the student performed to their ability plus or minus 2 questions.)</span>
+      <span ng-show="student.studentError == 3">(95% confident that the student performed to their ability plus or minus 3 questions.)</span>
+      <span ng-show="student.studentError == 4">(95% confident that the student performed to their ability plus or minus 4 questions.)</span>
+      <span ng-show="student.studentError == 5">(95% confident that the student performed to their ability plus or minus 5 questions.)</span>
+  <p>
+  <p>
+    Test Error:
+    <input id="slider3" ng-model="student.testError" type ="range" min ="0" max="50" step ="10" ng-change="updateStudent()" />
+
+      <span ng-show="student.testError == 0">(NAPLAN Standard: The test is approximately 95% reliable to +/- 7 months.)</span>
+      <span ng-show="student.testError == 10">(NAPLAN Standard: The test is approximately 95% reliable to +/- 8 months.)</span>
+      <span ng-show="student.testError == 20">(Test Error: The test is approximately 95% reliable to +/- 9 months.)</span>
+      <span ng-show="student.testError == 30">(Test Error: The test is approximately 95% reliable to +/- 10 months.)</span>
+      <span ng-show="student.testError == 40">(Test Error: The test is approximately 95% reliable to +/- 11 months.)</span>
+      <span ng-show="student.testError == 50">(Test Error: The test is approximately 95% reliable to +/- 12 months.)</span>
+  </p>
+</div>

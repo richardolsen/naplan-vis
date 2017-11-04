@@ -1,0 +1,66 @@
+.curriculum-table{
+  padding:2px;
+}
+
+.hover { cursor: pointer; cursor: hand; }
+
+.high{background-color: #98FB98;}
+.average{background-color: #FFFACD;}
+.low{background-color: red;}
+
+.green-bg{ background-color: #98FB98;}
+.orange-bg{ background-color: #FFFACD;}
+.shift-bg{ background-color: blue;}
+
+.cd_level1{color: blue;}
+.cd_level2{color: red;}
+.cd_level3{color: green;}
+.cd_level4{color: orange;}
+
+.difficulty1{background-color: #FABF2B;}
+.difficulty2{background-color: #FFFF97;}
+.difficulty3{background-color: #DAEEF3;}
+.difficulty4{background-color: #31869B;}
+
+.match{
+  background-color: green !important;
+}
+.possible{
+  background-color: orange !important;
+}
+
+.table td {
+   text-align: center;
+}
+
+.table th {
+   text-align: center;
+}
+
+.verticaltext {
+    transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+}
+
+.map-text{
+  font-size: 8px;
+}
+.table-map>thead>tr>th,.table-map tbody>tr>th,.table-map tfoot>tr>th,.table-map thead>tr>td,.table-map tbody>tr>td,.table-map tfoot>tr>td{
+  padding: 0px !important;
+  width: 10px !important;
+  height: 10px !important;
+  height: 20px !important;
+  line-height: 20px !important;
+  font-size: 12px;
+}
+
+.map-cell{
+
+}
+
+.previous-title{
+    vertical-align: middle !important;
+}
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
