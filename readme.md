@@ -10,6 +10,8 @@ I wanted a way to communicate to my colleagues at school about how NAPLAN data i
 
 This project uses angularjs (ver 1), you probably need a webserver but could also be served from something like s3.
 
+## Demo
+You can see a demo at: https://www.richardolsen.me/naplan/getting-started
 
 ## Contributors
 
@@ -17,4 +19,4 @@ The 2017 data isn't out yet, so I've had to approximate it. There are many holes
 
 ## License
 
-This work is licensed under  GPLv3 http://www.gnu.org/licenses/quick-guide-gplv3, except where libraries are used, they follow their own license. 
+This work is licensed under  GPLv3 http://www.gnu.org/licenses/quick-guide-gplv3, except where libraries are used, they follow their own license.
